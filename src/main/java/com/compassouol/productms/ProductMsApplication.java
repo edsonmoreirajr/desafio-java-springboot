@@ -1,13 +1,13 @@
-package com.compassouol.desafiojavaspringboot;
+package com.compassouol.productms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DesafioJavaSpringbootApplication {
+public class ProductMsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DesafioJavaSpringbootApplication.class, args);
+		SpringApplication.run(ProductMsApplication.class, args);
 	}
 
 }

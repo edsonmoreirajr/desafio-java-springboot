@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.compassouol</groupId>
-	<artifactId>desafio-java-springboot</artifactId>
+	<artifactId>product-ms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>desafio-java-springboot</name>
-	<description>Proejto de desafio para Compasso Uol</description>
+	<name>product-ms</name>
+	<description>Projeto de desafio-java-springboot para Compasso Uol</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -40,6 +40,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	</dependencies>
 
