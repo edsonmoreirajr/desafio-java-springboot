@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  
+  mysql:
+    image: mysql:8.0.23
+    container_name: mysql_desafiojavaspringboot 
+    environment:
+      MYSQL_ROOT_PASSWORD: "MySql2021@"
+      MYSQL_DATABASE: "desafiojavaspringboot"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_desafio_java_springboot:/var/lib/mysql
+    networks:
+      - desafio_java_springboot_net
+
+  adminer:
+    image: adminer:4.8.0
+    container_name: adminer
+    ports:
+      - 8081:8080
+    depends_on:
+      - mysql
+    networks:
+      - desafio_java_springboot_net
+
+volumes:
+  mysql_desafio_java_springboot:
+    external: true
+
+networks:
+  desafio_java_springboot_net:
+    external: true  

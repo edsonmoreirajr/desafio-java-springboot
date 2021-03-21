@@ -1,0 +1,2 @@
+docker network create --driver=bridge desafio_java_springboot_net
+docker volume create mysql_desafio_java_springboot
