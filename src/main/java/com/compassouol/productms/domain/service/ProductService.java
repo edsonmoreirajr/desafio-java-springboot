@@ -1,7 +1,6 @@
 package com.compassouol.productms.domain.service;
 
 import java.math.BigDecimal;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -10,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.compassouol.productms.core.data.PageableTranslator;
 import com.compassouol.productms.domain.exception.not_found.ProductNaoEncontradoException;
 import com.compassouol.productms.domain.model.Product;
 import com.compassouol.productms.domain.repository.ProductRepository;
@@ -29,10 +27,8 @@ public class ProductService {
 	public Page<Product> search(Pageable pageable, String q, BigDecimal minPrice,
 			BigDecimal maxPrice) {
 		
-		Pageable pageableTraduzido = traduzirPageable(pageable);
-		
 		return productRepository.findAll(ProductSpecs.search(q, minPrice, maxPrice),
-				pageableTraduzido);
+				pageable);
 	}
 	
 	@Transactional
@@ -56,9 +52,4 @@ public class ProductService {
 			.orElseThrow(() -> new ProductNaoEncontradoException(id));
 	}
 	
-	private Pageable traduzirPageable(Pageable apiPageable) {
-		var mapeamento = Map.of("name", "name", "description", "description", "price", "price");
-
-		return PageableTranslator.translate(apiPageable, mapeamento);
-	}
 }

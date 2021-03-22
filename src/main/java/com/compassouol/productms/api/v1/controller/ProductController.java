@@ -1,7 +1,6 @@
 package com.compassouol.productms.api.v1.controller;
 
 import java.math.BigDecimal;
-import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -28,12 +27,8 @@ import com.compassouol.productms.api.v1.assembler.ProductInputDisassembler;
 import com.compassouol.productms.api.v1.assembler.ProductModelAssembler;
 import com.compassouol.productms.api.v1.model.ProductModel;
 import com.compassouol.productms.api.v1.model.input.ProductInput;
-import com.compassouol.productms.core.data.PageWrapper;
-import com.compassouol.productms.core.data.PageableTranslator;
 import com.compassouol.productms.domain.exception.not_found.ProductNaoEncontradoException;
 import com.compassouol.productms.domain.model.Product;
-import com.compassouol.productms.domain.repository.ProductRepository;
-import com.compassouol.productms.domain.repository.spec.ProductSpecs;
 import com.compassouol.productms.domain.service.ProductService;
 
 @RestController
@@ -41,16 +36,14 @@ import com.compassouol.productms.domain.service.ProductService;
 public class ProductController {
 
 	private ProductService productService;
-	private ProductRepository productRepository;
 	private ProductModelAssembler productModelAssembler;
 	private ProductInputDisassembler productInputDisassembler;
 	private PagedResourcesAssembler<Product> pagedResourcesAssembler;
 
-	public ProductController(ProductService productService, ProductRepository productRepository,
+	public ProductController(ProductService productService,
 			ProductModelAssembler productModelAssembler, ProductInputDisassembler productInputDisassembler,
 			PagedResourcesAssembler<Product> pagedResourcesAssembler) {
 		this.productService = productService;
-		this.productRepository = productRepository;
 		this.productModelAssembler = productModelAssembler;
 		this.productInputDisassembler = productInputDisassembler;
 		this.pagedResourcesAssembler = pagedResourcesAssembler;
@@ -70,8 +63,6 @@ public class ProductController {
 			@RequestParam(required=false) BigDecimal maxPrice, @PageableDefault(size = 10) Pageable pageable) {
 
 		Page<Product> pedidosPage = productService.search(pageable, q, minPrice, maxPrice);
-
-		pedidosPage = new PageWrapper<>(pedidosPage, pageable);
 
 		return pagedResourcesAssembler.toModel(pedidosPage, productModelAssembler);
 	}
