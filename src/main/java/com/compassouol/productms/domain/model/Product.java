@@ -19,8 +19,8 @@ public class Product {
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_product", unique=true, nullable=false)
-	private Long idProduct;
+	@Column(name="id", unique=true, nullable=false)
+	private Long id;
 	
 	@Column(name="name", nullable=false, length=80)
 	private String name;
