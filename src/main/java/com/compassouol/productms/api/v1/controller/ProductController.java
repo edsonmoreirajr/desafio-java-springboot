@@ -60,20 +60,16 @@ public class ProductController {
 	public PagedModel<ProductModel> listAll(@PageableDefault(size = 10) Pageable pageable) {
 
 		Page<Product> productsPage = productService.listAll(pageable);
-		PagedModel<ProductModel> productsPagedModel = pagedResourcesAssembler.toModel(productsPage,
-				productModelAssembler);
 
-		return productsPagedModel;
+		return pagedResourcesAssembler.toModel(productsPage,
+				productModelAssembler);
 	}
 
 	@GetMapping("/search")
 	public PagedModel<ProductModel> search(@RequestParam(required=false) String q, @RequestParam(required=false) BigDecimal minPrice,
 			@RequestParam(required=false) BigDecimal maxPrice, @PageableDefault(size = 10) Pageable pageable) {
 
-		Pageable pageableTraduzido = traduzirPageable(pageable);
-
-		Page<Product> pedidosPage = productRepository.findAll(ProductSpecs.search(q, minPrice, maxPrice),
-				pageableTraduzido);
+		Page<Product> pedidosPage = productService.search(pageable, q, minPrice, maxPrice);
 
 		pedidosPage = new PageWrapper<>(pedidosPage, pageable);
 
@@ -121,9 +117,4 @@ public class ProductController {
 		productService.remove(id);
 	}
 
-	private Pageable traduzirPageable(Pageable apiPageable) {
-		var mapeamento = Map.of("name", "name", "description", "description", "price", "price");
-
-		return PageableTranslator.translate(apiPageable, mapeamento);
-	}
 }
