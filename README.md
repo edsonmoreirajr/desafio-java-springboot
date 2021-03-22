@@ -1,3 +1,7 @@
+<h1>Instruções</h1>
+<p>Executar primeiro os comandos contidos no arquivo "docker criar rede e volume.txt". Depois de executados, usar o Docker Compose com o arquivo "docker-compose.yml" para subir o banco de dados: </p> 
+<p>docker-compose up -d</p>
+    
 <div><p><img alt="Logo Compasso" src="https://compasso.com.br/wp-content/uploads/2020/07/LogoCompasso-Negativo.png"></p>
 <h1 id="markdown-header-catalogo-de-produtos">Catálogo de produtos</h1>
 <p>Sua tarefa é implementar um catálogo de produtos com Java e Spring Boot.</p>
