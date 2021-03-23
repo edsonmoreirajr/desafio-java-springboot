@@ -18,7 +18,7 @@ public enum ErrorType {
 	private String uri;
 	
 	ErrorType(String path, String title) {
-		this.uri = "https://algafood.com.br" + path;
+		this.uri = "https://compassouol.com/productms" + path;
 		this.title = title;
 	}
 	
